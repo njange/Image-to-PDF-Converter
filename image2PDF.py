@@ -11,8 +11,11 @@ class ImagetoPDFConverter:
         self.initialize_ui()
 
     def initialize_ui(self):
-        select_images_button= tk.Label(self.root, text = "Image to PDF Converter", font = ("Arial", 20, "bold"))
-        select_images_button.pack(pady = 10)
+        title_label = tk.label(self.root, text = "Image ro PDF Converter",font = ("Arial", 20, "bold"))
+        title_label.pack(pady = 10)
+
+        select_image_button = tk.Button(self.root, text = "Select Images", command = self.select_images)
+        select_image_button.pack(pady = 10)
 
 def main():
     root = tk.Tk()
