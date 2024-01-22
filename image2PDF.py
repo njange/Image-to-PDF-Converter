@@ -30,10 +30,43 @@ class ImagetoPDFConverter:
 
     def select_images(self):
         self.image_paths = filedialog.askopenfilenames(title = "Select Images", filetypes = (("PNG Files", "*.png"), ("JPG Files", "*.jpg"), ("All Files", "*.*")))
+        self.update_selected_image_listbox()\
 
-    def convert_to_pdf(self):
-        # Define the functionality for converting images to PDF here
-        pass
+    def update_selected_image_listbox(self):
+        self.selected_image_listbox.delete(0, tk.END)
+
+        for image_path in self.image_paths:
+            _, image_name = os.path.split(image_path)
+            self.selected_image_listbox.insert(tk.END, image_path)
+
+
+
+    def convert_image_to_pdf(self):
+        if not self.image_paths:
+            return
+
+        output_pdf_name = self.output_pdf_name.get() + ".pdf" if self.output_pdf_name.get()
+        else "output.pdf"
+
+        pdf = canvas.Canvas(output_pdf_name, pagesize = (612,792))
+
+        for image_path in self.image_paths:
+            img = Image.open(image_path)
+            available_width, available_height = 540, 720
+            scale_factor = min(available_width/img.width, available_height/img.height)
+            new_width = img.width * scale_factor
+            new_height = img.height * scale_factor
+            x_centered = 612-new_width/2
+            y_centered = 792-new_height/2
+
+            pdf.setFillColor(255,255,255)
+            pdf.rect(0,0,612,792, fill = True, stroke = False)
+            pdf.drawInlineImage(img, x_centered, y_centered, width = new_width, height = new_height)
+            pdf.showPage()
+
+            pdf.save()
+
+
 
 def main():
     root = tk.Tk()
