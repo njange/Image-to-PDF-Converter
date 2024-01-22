@@ -11,4 +11,14 @@ class ImagetoPDFConverter:
 
         def initialize_ui(self):
             title_label = tk.Label(self.root, text = "Image to PDF Converter", font = ("Arial", 20, "bold"))
-            title_label.pack(pady = 20)
+            title_label.pack(pady = 10)
+
+def main():
+    root = tk.TK()
+    root.title("Image to PDF Converter")
+    root.geometry("400x600")
+    root.mainloop()
+
+if __name__ ==
+
+
