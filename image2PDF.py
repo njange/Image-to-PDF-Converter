@@ -11,8 +11,8 @@ class ImagetoPDFConverter:
         self.initialize_ui()
 
     def initialize_ui(self):
-        title_label = tk.Label(self.root, text = "Image to PDF Converter", font = ("Arial", 20, "bold"))
-        title_label.pack(pady = 10)
+        select_images_button= tk.Label(self.root, text = "Image to PDF Converter", font = ("Arial", 20, "bold"))
+        select_images_button.pack(pady = 10)
 
 def main():
     root = tk.Tk()
@@ -23,5 +23,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
